@@ -95,43 +95,29 @@ MatchDocument (const std::execution::parallel_policy& policy, const std::string&
     const Query query = ParseQuery ( raw_query );
     vector<string> matched_words;
 
-//    std::all_of (query.plus_words.begin(), query.plus_words.end(), 
-//              [&] ( const string &word )
-//              {
-//                if  ( count(query.minus_words.begin(), query.minus_words.end(), word) > 0 )
-//                {
-//                    return;
-//                }
-//                else
-//                {
-//                    copy_if (matched_words.begin(), word);
-//                }
-//              }
-//            );
+    for_each ( policy, 
+              query.plus_words.begin(), query.plus_words.end(), 
+              [&] ( const string &word )
+              {
+                 if ( word_to_document_freqs_.at( word ).count( document_id )) 
+                 {
+                 matched_words.push_back ( word );
+                 }
+              }
+    );
+
+//    for ( const string& word : query.plus_words )
+//    {
+//        if ( word_to_document_freqs_.count( word )== 0 )
+//        {
+//            continue;
+//        }
 //
-//    for_each ( policy, 
-//              query.plus_words.begin(), query.plus_words.end(), 
-//              [&] ( const string &word )
-//              {
-//                 if ( word_to_document_freqs_.at( word ).count( document_id )) 
-//                 {
-//                     matched_words.push_back ( word );
-//                 }
-//              }
-//    );
-
-    for ( const string& word : query.plus_words )
-    {
-        if ( word_to_document_freqs_.count( word )== 0 )
-        {
-            continue;
-        }
-
-        if ( word_to_document_freqs_.at( word ).count( document_id )) 
-        {
-            matched_words.push_back( word );
-        }
-    }//for
+//        if ( word_to_document_freqs_.at( word ).count( document_id )) 
+//        {
+//            matched_words.push_back( word );
+//        }
+//    }//for
      //
     //
     ClearResultWithMinusWords ( query.minus_words, document_id, matched_words );
@@ -223,11 +209,11 @@ ParseQuery ( const string& text )const
         {
             if ( query_word.is_minus )
             {
-                query.minus_words.push_back( query_word.word );
+                query.minus_words.insert( query_word.word );
             }
             else
             {
-                query.plus_words.push_back( query_word.word );
+                query.plus_words.insert( query_word.word );
             }
         }
     }
@@ -248,7 +234,7 @@ ComputeAverageRating ( const vector<int> & ratings )
 
 
 void SearchServer::
-EraseTFIDFwithMinusWords ( const vector<string> &minus_words, map<int, double> &tf_idf )const
+EraseTFIDFwithMinusWords ( const set<string> &minus_words, map<int, double> &tf_idf )const
 {
     for ( const auto& word : minus_words )
     {
@@ -269,7 +255,7 @@ EraseTFIDFwithMinusWords ( const vector<string> &minus_words, map<int, double> &
 
 
 vector<string> SearchServer::
-AddPlusWords ( const vector<string> &plus_words, const int document_id )const
+AddPlusWords ( const set<string> &plus_words, const int document_id )const
 {
     vector<string> matched_words;
 
@@ -290,7 +276,7 @@ AddPlusWords ( const vector<string> &plus_words, const int document_id )const
 
 
 void SearchServer::
-ClearResultWithMinusWords ( const vector<string> &minus_words, const int document_id, 
+ClearResultWithMinusWords ( const set<string> &minus_words, const int document_id, 
         vector<string> &matched_words )const
 {
     for ( const string& word : minus_words )

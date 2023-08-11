@@ -1,0 +1,159 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/idis/Yandex/sprint_9/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+ACTUAL	document.h	/^    ACTUAL, $/;"	e	enum:DocumentStatus
+ASSERT	test_example_functions.h	/^#define ASSERT(/;"	d
+ASSERT_EQUAL	test_example_functions.h	/^#define ASSERT_EQUAL(/;"	d
+ASSERT_EQUAL_HINT	test_example_functions.h	/^#define ASSERT_EQUAL_HINT(/;"	d
+ASSERT_HINT	test_example_functions.h	/^#define ASSERT_HINT(/;"	d
+AddDocument	search_server.cpp	/^AddDocument ( int  document_id, $/;"	f	class:SearchServer	typeref:typename:void
+AddFindRequest	request_queue.cpp	/^    RequestQueue::AddFindRequest ( const string& raw_query )$/;"	f	class:RequestQueue	typeref:typename:vector<Document>
+AddFindRequest	request_queue.cpp	/^    RequestQueue::AddFindRequest ( const string& raw_query, DocumentStatus status )$/;"	f	class:RequestQueue	typeref:typename:vector<Document>
+AddFindRequest	request_queue.h	/^    AddFindRequest ( const std::string& raw_query, DocumentPredicate document_predicate )$/;"	f	class:RequestQueue	typeref:typename:std::vector<Document>
+AddPlusWords	search_server.cpp	/^AddPlusWords ( const set<string> &plus_words, const int document_id )const$/;"	f	class:SearchServer	typeref:typename:vector<string>
+AssertEqualImpl	test_example_functions.h	/^AssertEqualImpl ( const T& t, const U& u, const std::string& t_str, const std::string& u_str, co/;"	f	typeref:typename:void
+AssertImpl	test_example_functions.cpp	/^AssertImpl ( bool value, const string& expr_str, const string& file, $/;"	f	typeref:typename:void
+BANNED	document.h	/^    BANNED, $/;"	e	enum:DocumentStatus
+CalculateIDF	search_server.cpp	/^CalculateIDF ( const double match_word_in_docs )const $/;"	f	class:SearchServer	typeref:typename:double
+CalculateTF	search_server.cpp	/^CalculateTF ( const double total_words )const $/;"	f	class:SearchServer	typeref:typename:double
+CheckActualFinds	request_queue.cpp	/^    RequestQueue::CheckActualFinds ( )$/;"	f	class:RequestQueue	typeref:typename:void
+CheckCharInWord	search_server.cpp	/^CheckCharInWord ( const string& text )const $/;"	f	class:SearchServer	typeref:typename:void
+CheckIdDocument	search_server.cpp	/^CheckIdDocument ( const int document_id )const $/;"	f	class:SearchServer	typeref:typename:void
+ClearResultWithMinusWords	search_server.cpp	/^ClearResultWithMinusWords ( const set<string> &minus_words, const int document_id, $/;"	f	class:SearchServer	typeref:typename:void
+Clock	log_duration.h	/^    using Clock = std::chrono::steady_clock;$/;"	t	class:LogDuration	typeref:typename:std::chrono::steady_clock
+ComputeAverageRating	search_server.cpp	/^ComputeAverageRating ( const vector<int> & ratings )$/;"	f	class:SearchServer	typeref:typename:int
+Document	document.cpp	/^Document::Document ( int id, double relevance, int rating ) $/;"	f	class:Document
+Document	document.h	/^struct Document {$/;"	s
+DocumentData	search_server.h	/^    struct DocumentData {$/;"	s	class:SearchServer
+DocumentStatus	document.h	/^DocumentStatus {$/;"	g
+EraseTFIDFwithMinusWords	search_server.cpp	/^EraseTFIDFwithMinusWords ( const set<string> &minus_words, map<int, double> &tf_idf )const$/;"	f	class:SearchServer	typeref:typename:void
+FindAllDocuments	search_server.h	/^FindAllDocuments ( const Query& query_words, Predicate predicate )const $/;"	f	class:SearchServer	typeref:typename:std::vector<Document>
+FindResult	request_queue.cpp	/^    RequestQueue::FindResult (const std::vector<Document> &result )$/;"	f	class:RequestQueue	typeref:typename:std::vector<Document>
+FindTopDocuments	search_server.cpp	/^FindTopDocuments ( const string& raw_query, DocumentStatus status )const $/;"	f	class:SearchServer	typeref:typename:vector<Document>
+FindTopDocuments	search_server.h	/^FindTopDocuments ( const std::string& raw_query, Predicate predicate )const $/;"	f	class:SearchServer	typeref:typename:std::vector<Document>
+GenerateDictionary	main.cpp	/^vector<string> GenerateDictionary(mt19937& generator, int word_count, int max_length) {$/;"	f	typeref:typename:vector<string>
+GenerateQueries	main.cpp	/^vector<string> GenerateQueries(mt19937& generator, const vector<string>& dictionary, int query_c/;"	f	typeref:typename:vector<string>
+GenerateQuery	main.cpp	/^string GenerateQuery(mt19937& generator, const vector<string>& dictionary, int word_count, doubl/;"	f	typeref:typename:string
+GenerateWord	main.cpp	/^string GenerateWord(mt19937& generator, int max_length) {$/;"	f	typeref:typename:string
+GetDocumentCount	search_server.cpp	/^GetDocumentCount ( )const $/;"	f	class:SearchServer	typeref:typename:int
+GetNoResultRequests	request_queue.cpp	/^    RequestQueue::GetNoResultRequests ( )const $/;"	f	class:RequestQueue	typeref:typename:int
+GetWordFrequencies	search_server.cpp	/^GetWordFrequencies ( int document_id )const$/;"	f	class:SearchServer	typeref:typename:const map<string,double> &
+IRRELEVANT	document.h	/^    IRRELEVANT, $/;"	e	enum:DocumentStatus
+IsStopWord	search_server.cpp	/^IsStopWord ( const string& word )const $/;"	f	class:SearchServer	typeref:typename:bool
+IsValidWord	search_server.cpp	/^IsValidWord ( const string& word )$/;"	f	class:SearchServer	typeref:typename:bool
+IteratorRange	paginator.h	/^    IteratorRange ( T_iterator T_it_begin, T_iterator T_it_end, std::size_t size_n )$/;"	f	class:IteratorRange
+IteratorRange	paginator.h	/^class IteratorRange$/;"	c
+LOG_DURATION	log_duration.h	/^#define LOG_DURATION(/;"	d
+LOG_DURATION_STREAM	log_duration.h	/^#define LOG_DURATION_STREAM(/;"	d
+LogDuration	log_duration.h	/^    LogDuration(std::string_view id, std::ostream& dst_stream = std::cerr)$/;"	f	class:LogDuration
+LogDuration	log_duration.h	/^class LogDuration {$/;"	c
+MAX_RESULT_DOCUMENT_COUNT	search_server.h	/^const int MAX_RESULT_DOCUMENT_COUNT = 5;$/;"	v	typeref:typename:const int
+MakeUniqueNonEmptyStrings	string_processing.h	/^MakeUniqueNonEmptyStrings ( const StringContainer &strings )$/;"	f	typeref:typename:std::set<std::string>
+MatchDocument	search_server.cpp	/^MatchDocument ( const string& raw_query, int document_id )const $/;"	f	class:SearchServer	typeref:typename:tuple<vector<string>,DocumentStatus>
+MatchDocument	search_server.cpp	/^MatchDocument (const std::execution::parallel_policy& policy, const std::string& raw_query, int /;"	f	class:SearchServer	typeref:typename:tuple<vector<string>,DocumentStatus>
+MatchDocument	search_server.cpp	/^MatchDocument (const std::execution::sequenced_policy&, const std::string& raw_query, int docume/;"	f	class:SearchServer	typeref:typename:tuple<vector<string>,DocumentStatus>
+PROFILE_CONCAT	log_duration.h	/^#define PROFILE_CONCAT(/;"	d
+PROFILE_CONCAT_INTERNAL	log_duration.h	/^#define PROFILE_CONCAT_INTERNAL(/;"	d
+Paginate	paginator.h	/^auto Paginate ( const Container& c, size_t page_size ){$/;"	f	typeref:typename:auto
+Paginator	paginator.h	/^    Paginator ( T it_begin, T it_end, std::size_t docs_on_list )\/\/ получаем векто/;"	f	class:Paginator
+Paginator	paginator.h	/^class Paginator$/;"	c
+ParSeqRemoveDocument	search_server.h	/^   void ParSeqRemoveDocument  (const T &police, int document_id )$/;"	f	class:SearchServer	typeref:typename:void
+ParseQuery	search_server.cpp	/^ParseQuery ( const string& text )const $/;"	f	class:SearchServer	typeref:typename:SearchServer::Query
+ParseQueryWord	search_server.cpp	/^ParseQueryWord ( string word )const$/;"	f	class:SearchServer	typeref:typename:SearchServer::QueryWord
+PrintDocument	document.cpp	/^PrintDocument ( const Document& document ){$/;"	f	typeref:typename:void
+ProcessQueries	process_queries.cpp	/^ProcessQueries( const SearchServer& search_server, const std::vector<std::string>& queries)$/;"	f	typeref:typename:std::vector<std::vector<Document>>
+ProcessQueriesJoined	process_queries.cpp	/^   ProcessQueriesJoined ( const SearchServer &  search_server,$/;"	f	typeref:typename:std::vector<Document>
+Query	search_server.h	/^    struct Query$/;"	s	class:SearchServer
+QueryResult	request_queue.h	/^    struct QueryResult {$/;"	s	class:RequestQueue
+QueryWord	search_server.h	/^    struct QueryWord $/;"	s	class:SearchServer
+REMOVED	document.h	/^    REMOVED, $/;"	e	enum:DocumentStatus
+ReadLine	read_input_functions.cpp	/^ReadLine ( ){$/;"	f	typeref:typename:std::string
+ReadLineWithNumber	read_input_functions.cpp	/^ReadLineWithNumber ( ){$/;"	f	typeref:typename:int
+RemoveDocument	search_server.cpp	/^RemoveDocument  (const std::execution::parallel_policy& , int document_id)$/;"	f	class:SearchServer	typeref:typename:void
+RemoveDocument	search_server.cpp	/^RemoveDocument  (const std::execution::sequenced_policy& , int document_id)$/;"	f	class:SearchServer	typeref:typename:void
+RemoveDocument	search_server.cpp	/^RemoveDocument ( int document_id )$/;"	f	class:SearchServer	typeref:typename:void
+RemoveDuplicates	process_queries.cpp	/^void RemoveDuplicates(SearchServer& search_server) $/;"	f	typeref:typename:void
+RequestQueue	request_queue.cpp	/^    RequestQueue::RequestQueue ( const SearchServer& search_server )$/;"	f	class:RequestQueue
+RequestQueue	request_queue.h	/^class RequestQueue {$/;"	c
+ResultMatchedDocuments	search_server.cpp	/^ResultMatchedDocuments ( const map<int, double> &tf_idf )const$/;"	f	class:SearchServer	typeref:typename:vector<Document>
+SearchServer	search_server.cpp	/^SearchServer ( const string& stop_words_text ): SearchServer ( SplitIntoWords ( stop_words_text /;"	f	class:SearchServer
+SearchServer	search_server.h	/^SearchServer ( const StringContainer& stop_words )$/;"	f	class:SearchServer
+SearchServer	search_server.h	/^class SearchServer {$/;"	c
+SetCurrentSizeForRezult	search_server.cpp	/^SetCurrentSizeForRezult ( vector<Document> &matched_documents, const long unsigned int max_resul/;"	f	class:SearchServer	typeref:typename:void
+SetDocumentForRelevance	search_server.cpp	/^SetDocumentForRelevance (vector<Document> matched_documents ) const$/;"	f	class:SearchServer	typeref:typename:vector<Document>
+SetStopWords	search_server.cpp	/^SetStopWords ( const string& text )$/;"	f	class:SearchServer	typeref:typename:void
+SetTFIDFwithWordPlus	search_server.h	/^SetTFIDFwithWordPlus ( const std::set<std::string> words, const Predicate &predicate )const$/;"	f	class:SearchServer	typeref:typename:std::map<int,double>
+SplitIntoWords	string_processing.cpp	/^SplitIntoWords ( const std::string& text ){$/;"	f	typeref:typename:std::vector<std::string>
+SplitIntoWordsNoStop	search_server.cpp	/^SplitIntoWordsNoStop ( const string& text )const $/;"	f	class:SearchServer	typeref:typename:vector<string>
+TEST	main.cpp	/^#define TEST(/;"	d	file:
+Test	main.cpp	/^void Test(string_view mark, SearchServer search_server, const string& query, ExecutionPolicy&& p/;"	f	typeref:typename:void
+TestAddedDocument	test_example_functions.cpp	/^TestAddedDocument ()$/;"	f	typeref:typename:void
+TestExcludeStopWordsFromAddedDocumentContent	test_example_functions.cpp	/^TestExcludeStopWordsFromAddedDocumentContent ( ){$/;"	f	typeref:typename:void
+TestMatchDocuments	test_example_functions.cpp	/^TestMatchDocuments ( )$/;"	f	typeref:typename:void
+TestMinusWordsInQuery	test_example_functions.cpp	/^TestMinusWordsInQuery ( )$/;"	f	typeref:typename:void
+TestPredicateSearch	test_example_functions.cpp	/^TestPredicateSearch ( )$/;"	f	typeref:typename:void
+TestRating	test_example_functions.cpp	/^TestRating ( )$/;"	f	typeref:typename:void
+TestRelevance	test_example_functions.cpp	/^TestRelevance( )$/;"	f	typeref:typename:void
+TestSearchServer	test_example_functions.cpp	/^void TestSearchServer ( )$/;"	f	typeref:typename:void
+TestSearchWithStatusDocuments	test_example_functions.cpp	/^TestSearchWithStatusDocuments ( )$/;"	f	typeref:typename:void
+TestSortForRelevance	test_example_functions.cpp	/^TestSortForRelevance ()$/;"	f	typeref:typename:void
+UNIQUE_VAR_NAME_PROFILE	log_duration.h	/^#define UNIQUE_VAR_NAME_PROFILE /;"	d
+__anon3610b2870102	search_server.h	/^                            {$/;"	f	function:SearchServer::ParSeqRemoveDocument	file:
+__anon3610b2870202	search_server.h	/^                          {$/;"	f	function:SearchServer::ParSeqRemoveDocument	file:
+__anon40ab26520102	process_queries.cpp	/^        [&search_server]( const std::string &s ) {$/;"	f	function:ProcessQueries	file:
+__anon9cdad9990102	test_example_functions.cpp	/^                                          { $/;"	f	function:TestPredicateSearch	file:
+__anon9cdad9990202	test_example_functions.cpp	/^                                          { $/;"	f	function:TestPredicateSearch	file:
+__anon9cdad9990302	test_example_functions.cpp	/^             ,[](const Document &lhs, const Document &rhs){return lhs.relevance > rhs.relevance;/;"	f	function:TestSortForRelevance	file:
+__anonfd0769e20102	search_server.cpp	/^    return FindTopDocuments ( raw_query, [status](int, DocumentStatus s, int ){return status == /;"	f	function:SearchServer::FindTopDocuments	file:
+__anonfd0769e20202	search_server.cpp	/^              {$/;"	f	function:SearchServer::MatchDocument	file:
+__anonfd0769e20302	search_server.cpp	/^    return none_of ( word.begin( ), word.end( ), [](char c ){$/;"	f	function:SearchServer::IsValidWord	file:
+__anonfd0769e20402	search_server.cpp	/^           {$/;"	f	function:SearchServer::SetDocumentForRelevance	file:
+all	Makefile	/^all:$/;"	t
+begin	paginator.h	/^    T_iterator begin ( ){ return it_begin; };$/;"	f	class:IteratorRange	typeref:typename:T_iterator
+begin	paginator.h	/^    auto   begin ( )const { return find_docs_.begin( ); };$/;"	f	class:Paginator	typeref:typename:auto
+begin	search_server.h	/^    auto begin(  )$/;"	f	class:SearchServer	typeref:typename:auto
+docs_	request_queue.h	/^        int docs_;$/;"	m	struct:RequestQueue::QueryResult	typeref:typename:int
+document_to_word_freqs_	search_server.h	/^    std::map  <int, std::map<std::string, double>>  document_to_word_freqs_; \/\/ id <слово/;"	m	class:SearchServer	typeref:typename:std::map<int,std::map<std::string,double>>
+documents_	search_server.h	/^    std::map  <int, DocumentData>  documents_;    \/\/ ID, < рейтинг, статус >$/;"	m	class:SearchServer	typeref:typename:std::map<int,DocumentData>
+dst_stream_	log_duration.h	/^    std::ostream& dst_stream_;$/;"	m	class:LogDuration	typeref:typename:std::ostream &
+empty_docs	request_queue.h	/^    int empty_docs = 0;$/;"	m	class:RequestQueue	typeref:typename:int
+end	paginator.h	/^    T_iterator end   ( ){ return it_end;   };$/;"	f	class:IteratorRange	typeref:typename:T_iterator
+end	paginator.h	/^    auto   end ( )const { return find_docs_.end( ); };$/;"	f	class:Paginator	typeref:typename:auto
+end	search_server.h	/^    auto end()$/;"	f	class:SearchServer	typeref:typename:auto
+find_docs_	paginator.h	/^    std::vector<IteratorRange<T> > find_docs_; \/\/ например храним по 2 доку/;"	m	class:Paginator	typeref:typename:std::vector<IteratorRange<T>>
+id	document.h	/^    int    id        = 0;$/;"	m	struct:Document	typeref:typename:int
+id_	log_duration.h	/^    const std::string id_;$/;"	m	class:LogDuration	typeref:typename:const std::string
+is_minus	search_server.h	/^        bool is_minus;$/;"	m	struct:SearchServer::QueryWord	typeref:typename:bool
+is_stop	search_server.h	/^        bool is_stop;$/;"	m	struct:SearchServer::QueryWord	typeref:typename:bool
+it_begin	paginator.h	/^    T_iterator it_begin;$/;"	m	class:IteratorRange	typeref:typename:T_iterator
+it_end	paginator.h	/^    T_iterator it_end;$/;"	m	class:IteratorRange	typeref:typename:T_iterator
+main	main.cpp	/^int main() {$/;"	f	typeref:typename:int
+min_in_day_	request_queue.h	/^    const static int min_in_day_ = 1440;$/;"	m	class:RequestQueue	typeref:typename:const int
+minus_words	search_server.h	/^        std::set<std::string> minus_words;$/;"	m	struct:SearchServer::Query	typeref:typename:std::set<std::string>
+n_doc_id_	search_server.h	/^    std::set  <int>                n_doc_id_;     \/\/ пара номер введеного д/;"	m	class:SearchServer	typeref:typename:std::set<int>
+operator <<	document.cpp	/^operator << (std::ostream & ost, const Document & doc )$/;"	f	typeref:typename:std::ostream &
+operator <<	paginator.h	/^std::ostream& operator << (std::ostream & ost, IteratorRange <T_iterator> it_range )$/;"	f	typeref:typename:std::ostream &
+plus_words	search_server.h	/^        std::set<std::string> plus_words;$/;"	m	struct:SearchServer::Query	typeref:typename:std::set<std::string>
+rating	document.h	/^    int    rating    = 0;$/;"	m	struct:Document	typeref:typename:int
+rating	search_server.h	/^        int rating;$/;"	m	struct:SearchServer::DocumentData	typeref:typename:int
+relevance	document.h	/^    double relevance = 0.0;$/;"	m	struct:Document	typeref:typename:double
+requests_	request_queue.h	/^    std::deque<QueryResult> requests_;$/;"	m	class:RequestQueue	typeref:typename:std::deque<QueryResult>
+search_server_	request_queue.h	/^    const SearchServer &search_server_;$/;"	m	class:RequestQueue	typeref:typename:const SearchServer &
+size	paginator.h	/^    T_iterator size  ( ){ return it_end - it_begin; };$/;"	f	class:IteratorRange	typeref:typename:T_iterator
+size	paginator.h	/^    size_t size ( )const { return find_docs_.size( ); };$/;"	f	class:Paginator	typeref:typename:size_t
+start_time_	log_duration.h	/^    const Clock::time_point start_time_ = Clock::now();$/;"	m	class:LogDuration	typeref:typename:const Clock::time_point
+status	search_server.h	/^        DocumentStatus status;$/;"	m	struct:SearchServer::DocumentData	typeref:typename:DocumentStatus
+stop_words_	search_server.h	/^    std::set  <std::string>        stop_words_;   \/\/ стоп слова. Документы и/;"	m	class:SearchServer	typeref:typename:std::set<std::string>
+tik_tak_count_	request_queue.h	/^    int tik_tak_count_ = 0;$/;"	m	class:RequestQueue	typeref:typename:int
+total_listings_	paginator.h	/^    int total_listings_;$/;"	m	class:Paginator	typeref:typename:int
+word	search_server.h	/^        std::string word;$/;"	m	struct:SearchServer::QueryWord	typeref:typename:std::string
+word_to_document_freqs_	search_server.h	/^    std::map  <std::string, std::map<int, double>>  word_to_document_freqs_; \/\/ Слово, ID/;"	m	class:SearchServer	typeref:typename:std::map<std::string,std::map<int,double>>
+~LogDuration	log_duration.h	/^    ~LogDuration() {$/;"	f	class:LogDuration

@@ -134,8 +134,8 @@ private:
 
     struct Query
     {
-        std::vector<std::string> minus_words;
-        std::vector<std::string> plus_words;
+        std::set<std::string> minus_words;
+        std::set<std::string> plus_words;
     };
 
 
@@ -219,7 +219,7 @@ private:
 // Выход: нет.
 //        Удаление во входном контейнере tf_idf
    void 
-   EraseTFIDFwithMinusWords ( const std::vector<std::string> &minus_words, std::map<int, double> &tf_idf )const;
+   EraseTFIDFwithMinusWords ( const std::set<std::string> &minus_words, std::map<int, double> &tf_idf )const;
 
 
 // расчитываем TF IDF
@@ -227,19 +227,19 @@ private:
 // Выход: пара id документа и TF IDF для этого документа.
    template<typename Predicate>
    std::map<int, double> 
-   SetTFIDFwithWordPlus ( const std::vector<std::string> words, const Predicate &predicate )const;
+   SetTFIDFwithWordPlus ( const std::set<std::string> words, const Predicate &predicate )const;
 
 
 // вход: Плюс слова, id документа
 // Выход: Если слов есть в этом документе помещаем его в vector<string> 
    std::vector<std::string> 
-   AddPlusWords ( const std::vector<std::string> &plus_words, const int document_id )const;
+   AddPlusWords ( const std::set<std::string> &plus_words, const int document_id )const;
 
 
 // Вход: минус слова, id документа, плюс слова которые были найдены в документе.
 // Внутри: Если минус слово есть в документе, то удалить все слова из вектора vector<string> &matched_words 
    void 
-   ClearResultWithMinusWords ( const std::vector<std::string> &minus_words, const int document_id, 
+   ClearResultWithMinusWords ( const std::set<std::string> &minus_words, const int document_id, 
                                      std::vector<std::string> &matched_words )const;
 
 
@@ -351,7 +351,7 @@ FindTopDocuments ( const std::string& raw_query, Predicate predicate )const
 
 template<typename Predicate>
 std::map<int, double> SearchServer::
-SetTFIDFwithWordPlus ( const std::vector<std::string> words, const Predicate &predicate )const
+SetTFIDFwithWordPlus ( const std::set<std::string> words, const Predicate &predicate )const
 {
     std::map<int, double> tf_idf;
     double idf;

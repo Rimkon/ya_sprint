@@ -95,27 +95,13 @@ MatchDocument (const std::execution::parallel_policy& policy, const std::string&
     const Query query = ParseQuery ( raw_query );
     vector<string> matched_words;
 
-//    std::all_of (query.plus_words.begin(), query.plus_words.end(), 
-//              [&] ( const string &word )
-//              {
-//                if  ( count(query.minus_words.begin(), query.minus_words.end(), word) > 0 )
-//                {
-//                    return;
-//                }
-//                else
-//                {
-//                    copy_if (matched_words.begin(), word);
-//                }
-//              }
-//            );
-//
 //    for_each ( policy, 
 //              query.plus_words.begin(), query.plus_words.end(), 
 //              [&] ( const string &word )
 //              {
 //                 if ( word_to_document_freqs_.at( word ).count( document_id )) 
 //                 {
-//                     matched_words.push_back ( word );
+//                 matched_words.push_back ( word );
 //                 }
 //              }
 //    );
