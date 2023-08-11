@@ -81,7 +81,53 @@ MatchDocument ( const string& raw_query, int document_id )const
     return { matched_words, documents_.at( document_id ).status };
 }
 
+tuple<vector<string>, DocumentStatus> SearchServer::
+MatchDocument (const std::execution::sequenced_policy&, const std::string& raw_query, int document_id )const 
+{
+    return MatchDocument ( raw_query, document_id );
+}
+//******************************************************************************************
+//******************************************************************************************
+//
+tuple<vector<string>, DocumentStatus> SearchServer::
+MatchDocument (const std::execution::parallel_policy& policy, const std::string& raw_query, int document_id )const 
+{
+    const Query query = ParseQuery ( raw_query );
+    vector<string> matched_words;
 
+    for_each ( policy, 
+              query.plus_words.begin(), query.plus_words.end(), 
+              [&] ( const string &word )
+              {
+                 if ( word_to_document_freqs_.at( word ).count( document_id )) 
+                 {
+                 matched_words.push_back ( word );
+                 }
+              }
+    );
+
+//    for ( const string& word : query.plus_words )
+//    {
+//        if ( word_to_document_freqs_.count( word )== 0 )
+//        {
+//            continue;
+//        }
+//
+//        if ( word_to_document_freqs_.at( word ).count( document_id )) 
+//        {
+//            matched_words.push_back( word );
+//        }
+//    }//for
+     //
+    //
+    ClearResultWithMinusWords ( query.minus_words, document_id, matched_words );
+
+    return { matched_words, documents_.at( document_id ).status };
+    
+}
+//
+//******************************************************************************************
+//******************************************************************************************
 double SearchServer::
 CalculateTF ( const double total_words )const 
 {

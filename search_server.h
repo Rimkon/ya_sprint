@@ -96,6 +96,15 @@ public:
    std::tuple<std::vector<std::string>, DocumentStatus> 
    MatchDocument ( const std::string& raw_query, int document_id )const ;
 
+   std::tuple<std::vector<std::string>, DocumentStatus> 
+   MatchDocument (const std::execution::sequenced_policy&, const std::string& raw_query, int document_id )const ;
+
+   std::tuple<std::vector<std::string>, DocumentStatus> 
+   MatchDocument (const std::execution::parallel_policy&, const std::string& raw_query, int document_id )const ;
+
+
+     
+     
 
     auto begin(  )
     {
