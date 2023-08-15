@@ -1,4 +1,3 @@
-
 #include <cmath> 
 #include <iterator>
 #include <execution>
@@ -91,32 +90,6 @@ MatchDocument (const std::execution::sequenced_policy&, const std::string& raw_q
 }
 //******************************************************************************************
 //******************************************************************************************
-//
-//tuple<vector<string>, DocumentStatus> SearchServer::MatchDocument(const std::execution::parallel_policy& policy, const std::string& raw_query, int document_id ) const
-//{
-//    const Query query = ParseQuery(raw_query, true);
-//    vector<string> matched_words;
-//
-//    if (std::all_of(policy, query.minus_words.begin(), query.minus_words.end(),
-//        [&](const std::string& minus_word)
-//        {
-//            return word_to_document_freqs_.at(minus_word).count(document_id);
-//        }))
-//    {
-//        return { matched_words, documents_.at(document_id).status };
-//    }
-//
-//    std::copy_if(policy, query.plus_words.cbegin(), query.plus_words.cend(), std::back_inserter(matched_words),
-//        [&](const string& plus_word)
-//        {
-//            return word_to_document_freqs_.at(plus_word).count(document_id);
-//        });
-//
-//    matched_words.erase(std::unique(policy, matched_words.begin(), matched_words.end()), matched_words.end());
-//
-//    return { matched_words, documents_.at(document_id).status };
-//}
-
 
 tuple<vector<string>, DocumentStatus> SearchServer::
 MatchDocument(const std::execution::parallel_policy& policy
@@ -128,6 +101,10 @@ MatchDocument(const std::execution::parallel_policy& policy
     if (std::any_of(policy, query.minus_words.begin(), query.minus_words.end(),
         [&](const std::string& minus_word)
         {
+           if  (count  (query.minus_words.begin(), query.minus_words.end(), minus_word) == 0 )
+           {
+               throw ("нет такого минус слова");
+           }
             return word_to_document_freqs_.at(minus_word).count(document_id);
         }))
     {
@@ -136,59 +113,25 @@ MatchDocument(const std::execution::parallel_policy& policy
 
     matched_words.resize ( query.plus_words.size());
 
-    std::copy_if(policy, query.plus_words.cbegin(), query.plus_words.cend(), std::back_inserter(matched_words),
-        [&](const string& plus_word)
-        {
-            return word_to_document_freqs_.at(plus_word).count(document_id);
-        });
+    auto end_copy = std::copy_if(policy, query.plus_words.cbegin(), query.plus_words.cend(), matched_words.begin(),
+                   [&](const string& plus_word)
+                   {
+                       if  (count  (query.plus_words.begin(), query.plus_words.end(), plus_word) == 0 )
+                       {
+                           throw ("нет такого плюс слова");
+                       }
+                       return word_to_document_freqs_.at(plus_word).count(document_id);
+                   });
 
-//    std::sort(policy, matched_words.begin(), matched_words.end());
-    matched_words.erase(std::unique(matched_words.begin(), matched_words.end()), matched_words.end());
+    matched_words.erase (end_copy, matched_words.end());
+
+    std::sort(policy, matched_words.begin(), matched_words.end());
+    matched_words.erase(std::unique(policy, matched_words.begin(), matched_words.end()), matched_words.end());
+
 
     return { matched_words, documents_.at(document_id).status };
 }
 
-
-
-
-
-
-//tuple<vector<string>, DocumentStatus> SearchServer::
-//MatchDocument (const std::execution::parallel_policy& policy, const std::string& raw_query, int document_id )const 
-//{
-//
-//  const Query query = ParseQuery(raw_query, true);
-//    vector<string> matched_words;
-//
-//    if (std::all_of(query.minus_words.begin(), query.minus_words.end(),
-//        [&](const std::string& minus_word)
-//        {
-//            return word_to_document_freqs_.at(minus_word).count(document_id);
-//        }))
-//    {
-//    return std::tuple<std::vector<std::string>, DocumentStatus>{ {}, documents_.at(document_id).status };
-//    }
-//
-//    else
-//    {
-//            std::copy_if(query.plus_words.cbegin(), query.plus_words.cend(), std::back_inserter(matched_words),
-//            [&](const string& plus_word)
-//            {
-//                return word_to_document_freqs_.at(plus_word).count(document_id);
-//            });
-//        
-//
-//        matched_words.resize(std::distance(query.plus_words.cbegin(), query.plus_words.cend()));
-//
-//
-//
-//        std::sort(matched_words.begin(), matched_words.end());
-//        matched_words.erase(std::unique(matched_words.begin(), matched_words.end()), matched_words.end());
-//    }
-//
-//    return std::tuple<std::vector<std::string>, DocumentStatus>{ matched_words, documents_.at(document_id).status };
-//}
-//
 //******************************************************************************************
 //******************************************************************************************
 double SearchServer::
