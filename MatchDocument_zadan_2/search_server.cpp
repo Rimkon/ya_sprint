@@ -1,12 +1,14 @@
-
 #include <cmath> 
+#include <iterator>
 #include <execution>
 #include <execution>
 #include "search_server.h"
 #include "string_processing.h"
 #include "document.h"
+#include <iterator>
 #include <string> 
 #include <numeric> 
+#include <tuple>
 
 using namespace std;
 
@@ -73,7 +75,7 @@ FindTopDocuments ( const string& raw_query, DocumentStatus status )const
 tuple<vector<string>, DocumentStatus> SearchServer::
 MatchDocument ( const string& raw_query, int document_id )const 
 {
-    const Query query = ParseQuery ( raw_query );
+    const Query query = ParseQuery ( raw_query, false );
 
     vector<string> matched_words = AddPlusWords ( query.plus_words, document_id );
     ClearResultWithMinusWords ( query.minus_words, document_id, matched_words );
@@ -88,44 +90,40 @@ MatchDocument (const std::execution::sequenced_policy&, const std::string& raw_q
 }
 //******************************************************************************************
 //******************************************************************************************
-//
+
 tuple<vector<string>, DocumentStatus> SearchServer::
-MatchDocument (const std::execution::parallel_policy& policy, const std::string& raw_query, int document_id )const 
+MatchDocument(const std::execution::parallel_policy& policy
+            , const std::string& raw_query, int document_id) const
 {
-    const Query query = ParseQuery ( raw_query );
+    const Query query = ParseQuery(raw_query, true);
     vector<string> matched_words;
 
-//    for_each ( policy, 
-//              query.plus_words.begin(), query.plus_words.end(), 
-//              [&] ( const string &word )
-//              {
-//                 if ( word_to_document_freqs_.at( word ).count( document_id )) 
-//                 {
-//                 matched_words.push_back ( word );
-//                 }
-//              }
-//    );
-
-    for ( const string& word : query.plus_words )
+    if (std::any_of(policy, query.minus_words.begin(), query.minus_words.end(),
+        [&](const std::string& minus_word)
+        {
+            return word_to_document_freqs_.at(minus_word).count(document_id);
+        }))
     {
-        if ( word_to_document_freqs_.count( word )== 0 )
-        {
-            continue;
-        }
+        return { matched_words, documents_.at(document_id).status };
+    }
 
-        if ( word_to_document_freqs_.at( word ).count( document_id )) 
-        {
-            matched_words.push_back( word );
-        }
-    }//for
-     //
-    //
-    ClearResultWithMinusWords ( query.minus_words, document_id, matched_words );
+    matched_words.resize ( query.plus_words.size());
 
-    return { matched_words, documents_.at( document_id ).status };
-    
+    auto end_copy = std::copy_if(policy, query.plus_words.cbegin(), query.plus_words.cend(), matched_words.begin(),
+                   [&](const string& plus_word)
+                   {
+                       return word_to_document_freqs_.at(plus_word).count(document_id);
+                   });
+
+    matched_words.resize (std::distance (matched_words.begin(), end_copy));
+
+    std::sort(policy, matched_words.begin(), matched_words.end());
+    matched_words.erase(std::unique(policy, matched_words.begin(), matched_words.end()), end_copy);
+
+
+    return { matched_words, documents_.at(document_id).status };
 }
-//
+
 //******************************************************************************************
 //******************************************************************************************
 double SearchServer::
@@ -191,7 +189,7 @@ ParseQueryWord ( string word )const
 
 
 SearchServer::Query SearchServer::
-ParseQuery ( const string& text )const 
+ParseQuery ( const string& text, bool is_parallel )const 
 {
     CheckCharInWord ( text );
     Query query;
@@ -217,9 +215,22 @@ ParseQuery ( const string& text )const
             }
         }
     }
+
+    if  ( is_parallel == false )
+    {
+        SortAndRemoveDublicate (query.minus_words);
+        SortAndRemoveDublicate (query.plus_words);
+    }
     return query;
 }
 
+void SearchServer::
+SortAndRemoveDublicate (std::vector<std::string>& v) const
+{
+        sort (v.begin(), v.end());
+        auto temp = std::unique(v.begin(), v.end());
+        v.erase (temp, v.end());
+}
 
 int SearchServer::
 ComputeAverageRating ( const vector<int> & ratings )
